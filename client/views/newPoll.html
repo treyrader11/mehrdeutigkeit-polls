@@ -7,16 +7,26 @@
         {{#if reactiveVarEquals 'creatingPoll' true}}
             <div class="new-poll-dialogue">
 				<h4>Create New Poll</h4>
+				{{#if currentUser}}
 				<div class="row">
 					<input id="newPollTitle" type="text" placeholder="Poll Title"/>
 				</div>
 				<div class="row">
 					<textarea id="newPollDescription" placeholder="Description of what we're voting on"></textarea>
 				</div>
+				<div class="row" style="padding: 8px; margin-left: -38.5em">
+					<input id="newPollDuration" type="number" placeholder="Hours active"/>
+				</div>
 				<div class="row">
 					<button class="btn btn-default" data-action="cancel-new-poll">Cancel</button>
-					<button class="btn btn-success" data-action="create-new-poll">Create Poll</button>
+					<button id="btn" class="btn btn-success" data-action="create-new-poll">Create Poll</button>
 				</div>
+				{{else}}
+				<br/>
+				<div>
+                    <p style="color: red">Must log in to create a new poll</p>
+                </div>
+                {{/if}}
             </div>
         {{/if}}
     {{/momentum}}

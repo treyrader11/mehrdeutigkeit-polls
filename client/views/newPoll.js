@@ -16,17 +16,23 @@ Template.newPoll.events = {
 	},
 	'click [data-action="create-new-poll"]': function(event){
 		event.preventDefault();
+		var invalid = false;
 		var template = Template.instance();
-		Polls.insert({
-			userId: Meteor.userId(),
-			title: template.$('#newPollTitle').val(),
-			description: template.$('#newPollDescription').val(),
-			timestamp: moment().valueOf(),
-			options: [
-				'Yes',
-				'No'
-			]
-		});
-		template.creatingPoll.set(false);
+		var title = template.$('#newPollTitle').val();
+		var desc = template.$('#newPollDescription').val();
+		var timestamp = moment().valueOf();
+
+		if(title === "" || title.length === 0) {
+			alert("Polls must have a title");
+		} else {
+			Meteor.call('insertNewPoll', Meteor.userId(), title, desc, timestamp);
+			template.creatingPoll.set(false);
+		}
 	}
 };
+
+Template.newPoll.helpers({
+	//'invalid': function() {
+	//	return Session.get('invalid');
+	//}
+})
