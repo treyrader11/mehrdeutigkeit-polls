@@ -29,7 +29,7 @@ Votes.allow({
 
 Meteor.methods({
 	insertNewPoll: function(userId, title, desc, timestamp, option_one, option_two, expiration) {
-		var expiration = moment().add(expiration, 'seconds').valueOf();
+		var expiration = moment().add(expiration, 'hours').valueOf();
 		//console.log(expiration);
 		if(option_one.length === 0 && option_two.length === 0) {
 			Polls.insert({

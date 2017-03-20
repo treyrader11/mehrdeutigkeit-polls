@@ -15,16 +15,16 @@
 					<textarea id="newPollDescription" placeholder="Description of what we're voting on"></textarea>
 				</div>
 		
-				<div class="row">
-					<input style="width: 90%; margin-bottom: 10px;" id="newPollOption1" type="text" placeholder="Poll Voter's Option"/>
+				<div class="row" id="add-option">
+					<button id="btn-add" class="btn btn-default" data-action="add-option-one">Add a voter's option</button>
 				</div>
-		
-		<!--		<div class="row">
-					<h4 data-action="add-option-one">Add a voter's option</h4>
-				</div>
-			-->
+
 				<div class="row">
-					<input style="width: 90%; margin-bottom: 10px;" id="newPollOption2" type="text" placeholder="Poll Voter's Option"/>
+					<input style="display: none; width: 90%; margin-bottom: 10px;" id="newPollOption1" type="text" placeholder="Poll Voter's Option"/>
+				</div>
+
+				<div class="row">
+					<input style="display: none; width: 90%; margin-bottom: 10px;" id="newPollOption2" type="text" placeholder="Poll Voter's Option"/>
 				</div>
 
 				<div class="row pull-left">
