@@ -59,8 +59,8 @@ Template.pollListItem.helpers({
 		var pollTemplate = Template.instance();
 		var expiration = pollTemplate.data.expiration;
 		//console.log(expiration);
-
-		if(moment().valueOf() < moment(expiration).add(10, 'seonds').valueOf()) {
+		console.log(moment().valueOf() < moment(expiration).add(24, 'hours').valueOf());
+		if(moment().valueOf() < moment(expiration).add(24, 'hours').valueOf()) {
 			return true;
 		}
 	},

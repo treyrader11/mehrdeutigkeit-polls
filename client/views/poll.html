@@ -16,18 +16,13 @@
                 expires on {{untilActive}}
             </div>
 
-            {{/if}}
-        {{else}}
+            {{else}}
             <div class="col-sm-12 text-center">
                 <div class="poll-list-item-title">
-                    {{title}}
-                </div>
-
-                 <div class="poll-list-item-title">
                     <p>Number Of Votes: {{numOfVotes}}</p>
                 </div>
 
-                 <div class="poll-list-item-time" style="color: red">{{title}} expired {{hoursAgo}}
+                <div class="poll-list-item-time" style="color: red">{{title}} expired {{hoursAgo}}
                 </div>
 
 
@@ -35,6 +30,7 @@
                     Created: <i style="margin-right: 1%" class="fa fa-calendar"></i>{{getTimeAgoFormat timestamp}}
                 </div>
             </div>
+            {{/if}}
 
         {{/if}}
         </div>

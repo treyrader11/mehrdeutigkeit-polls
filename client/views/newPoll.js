@@ -35,8 +35,15 @@ Template.newPoll.events = {
 		}
 	},
 	'click [data-action="add-option-one"]': function(event){
-		Session.set('addOption', true);
-
+		$('#add-option').hide(function() {
+			$('#newPollOption1').fadeIn('slow');
+			$('#add-option-two').fadeIn('slow');
+		})
+	},
+	'click [data-action="add-option-two"]': function(event){
+		$('#add-option-two').hide(function() {
+			$('#newPollOption2').fadeIn('slow');
+		})
 	}
 };
 
