@@ -28,23 +28,62 @@ Votes.allow({
 
 
 Meteor.methods({
-	insertNewPoll: function(userId, title, desc, timestamp, option_one, option_two, option_three, expiration) {
+	insertNewPoll: function(userId, title, desc, timestamp, option_one, option_two, expiration) {
 		var expiration = moment().add(expiration, 'seconds').valueOf();
-		console.log(expiration);
-		Polls.insert({
-			userId: userId,
-			title: title,
-			description: desc,
-			timestamp: timestamp,
-			options: [
-				'Yes',
-				'No',
-				option_one,
-				option_two,
-				option_three
-			],
-			expiration: expiration
-		});
+		//console.log(expiration);
+		if(option_one.length === 0 && option_two.length === 0) {
+			Polls.insert({
+				userId: userId,
+				title: title,
+				description: desc,
+				timestamp: timestamp,
+				options: [
+					'Yes',
+					'No'
+				],
+				expiration: expiration
+			});
+		} else if(option_two.length === 0) {
+			Polls.insert({
+				userId: userId,
+				title: title,
+				description: desc,
+				timestamp: timestamp,
+				options: [
+					'Yes',
+					'No',
+					option_one
+				],
+				expiration: expiration
+			});
+		} else if (option_one.length === 0) {
+			Polls.insert({
+				userId: userId,
+				title: title,
+				description: desc,
+				timestamp: timestamp,
+				options: [
+					'Yes',
+					'No',
+					option_two
+				],
+				expiration: expiration
+			});
+		} else {
+			Polls.insert({
+				userId: userId,
+				title: title,
+				description: desc,
+				timestamp: timestamp,
+				options: [
+					'Yes',
+					'No',
+					option_one,
+					option_two
+				],
+				expiration: expiration
+			});
+		}
 	},
 	insertVote: function(id, pollId, timestamp, option) {
 		//find the vote where id = this.userId and pollId = this.pollId

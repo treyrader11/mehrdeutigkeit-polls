@@ -64,10 +64,30 @@ Template.pollListItem.helpers({
 			return true;
 		}
 	},
-	'whoVoted': function(){
+	'numOfVotes': function(){
 		var pollTemplate = Template.instance();
 		var pollId = pollTemplate.data._id;
 		//console.log(pollId);
-		return Votes.find({pollId : pollId}).count(); //{pollId : pollId}).count();
+		return Votes.find({pollId : pollId}).count();
+	},
+	'hoursAgo': function(){
+		var pollTemplate = Template.instance();
+		var expiration = pollTemplate.data.expiration;
+		//console.log(moment().valueOf());
+
+		//console.log(moment(expiration).endOf('day').humanize());
+		
+		if(moment().valueOf() > expiration) {
+			return moment(expiration).fromNow();
+		}
+	},
+	'untilActive': function(){
+		var pollTemplate = Template.instance();
+		var expiration = pollTemplate.data.expiration;
+
+		if(moment().valueOf() < expiration) {
+			return moment(expiration).endOf(expiration).format("dddd, MMMM Do YYYY, h:mm a");
+		}
+
 	}
 })

@@ -11,20 +11,29 @@
             <div class="col-sm-12 text-center">
 				<button class="btn btn-default" data-action="view-poll">View Poll</button>
             </div>
+            <br/>
+
+            <div class="col-sm-12 text-center">
+                expires on {{untilActive}}
+            </div>
+
             {{/if}}
         {{else}}
             <div class="col-sm-12 text-center">
                 <div class="poll-list-item-title">
                     {{title}}
-                    {{whoVoted}}
-        
-                    
-                        
-
-
                 </div>
-                <div class="poll-details-creation-date">
-                    <i class="fa fa-calendar"></i>{{getTimeAgoFormat timestamp}}
+
+                 <div class="poll-list-item-title">
+                    <p>Number Of Votes: {{numOfVotes}}</p>
+                </div>
+
+                 <div class="poll-list-item-time" style="color: red">{{title}} expired {{hoursAgo}}
+                </div>
+
+
+                <div class="poll-list-item-time">
+                    Created: <i style="margin-right: 1%" class="fa fa-calendar"></i>{{getTimeAgoFormat timestamp}}
                 </div>
             </div>
 

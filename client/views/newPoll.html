@@ -14,18 +14,23 @@
 				<div class="row">
 					<textarea id="newPollDescription" placeholder="Description of what we're voting on"></textarea>
 				</div>
+		
 				<div class="row">
-					<input id="newPollOption1" type="text" placeholder="Poll Voter's Option"/>
+					<input style="width: 90%; margin-bottom: 10px;" id="newPollOption1" type="text" placeholder="Poll Voter's Option"/>
 				</div>
+		
+		<!--		<div class="row">
+					<h4 data-action="add-option-one">Add a voter's option</h4>
+				</div>
+			-->
 				<div class="row">
-					<input id="newPollOption2" type="text" placeholder="Poll Voter's Option"/>
+					<input style="width: 90%; margin-bottom: 10px;" id="newPollOption2" type="text" placeholder="Poll Voter's Option"/>
 				</div>
-				<div class="row">
-					<input id="newPollOption3" type="text" placeholder="Poll Voter's Option"/>
+
+				<div class="row pull-left">
+					Hours Active: <input style="width: 31%; margin-bottom: 10px;" id="newPollDuration" type="number"/>
 				</div>
-				<div class="row">
-					<input id="newPollDuration" type="number" placeholder="Insert Hours this poll will be active"/>
-				</div>
+
 				<div class="row">
 					<button class="btn btn-default" data-action="cancel-new-poll">Cancel</button>
 					<button id="btn" class="btn btn-success" data-action="create-new-poll">Create Poll</button>
