@@ -28,7 +28,9 @@ Votes.allow({
 
 
 Meteor.methods({
-	insertNewPoll: function(userId, title, desc, timestamp) {
+	insertNewPoll: function(userId, title, desc, timestamp, option_one, option_two, option_three, expiration) {
+		var expiration = moment().add(expiration, 'seconds').valueOf();
+		console.log(expiration);
 		Polls.insert({
 			userId: userId,
 			title: title,
@@ -36,18 +38,20 @@ Meteor.methods({
 			timestamp: timestamp,
 			options: [
 				'Yes',
-				'No'
-			]
+				'No',
+				option_one,
+				option_two,
+				option_three
+			],
+			expiration: expiration
 		});
 	},
 	insertVote: function(id, pollId, timestamp, option) {
 		//find the vote where id = this.userId and pollId = this.pollId
 		var hasVoted = Votes.findOne({userId: Meteor.userId(), pollId: pollId});
-		console.log(hasVoted);
 		if(hasVoted) {
 			console.log('user already voted');
-			var hasVoted = true;
-			return hasVoted;
+			return false;
 		} else {
 			Votes.insert({
 				userId: id,
@@ -55,7 +59,8 @@ Meteor.methods({
 				timestamp: timestamp,
 				option: option
 			});
+			return true;
 
 		}
 	}
-})
+});

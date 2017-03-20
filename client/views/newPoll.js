@@ -20,19 +20,23 @@ Template.newPoll.events = {
 		var template = Template.instance();
 		var title = template.$('#newPollTitle').val();
 		var desc = template.$('#newPollDescription').val();
+		var option_one = template.$('#newPollOption1').val();
+		var option_two = template.$('#newPollOption2').val();
+		var option_three = template.$('#newPollOption3').val();
+		var expiration = template.$('#newPollDuration').val();
 		var timestamp = moment().valueOf();
 
 		if(title === "" || title.length === 0) {
 			alert("Polls must have a title");
+		} else if (expiration === "" || expiration.length === 0) {
+			alert("Must insert number of hours")
 		} else {
-			Meteor.call('insertNewPoll', Meteor.userId(), title, desc, timestamp);
+			Meteor.call('insertNewPoll', Meteor.userId(), title, desc, timestamp, option_one, option_two, option_three, expiration);
 			template.creatingPoll.set(false);
 		}
 	}
 };
 
 Template.newPoll.helpers({
-	//'invalid': function() {
-	//	return Session.get('invalid');
-	//}
+
 })

@@ -4,7 +4,10 @@
 
 Meteor.publish('polls', function () {
 	check(arguments, [Match.Any]);
-	return Polls.find({});
+	return [
+		Polls.find({}),
+		Votes.find({})
+	];
 });
 
 
@@ -13,5 +16,9 @@ Meteor.publish('pollDetails', function (pollId) {
 	return [
 		Polls.find({_id: pollId}),
 		Votes.find({pollId: pollId})
-	] // <-- something missing here?
+	];
+});
+
+Meteor.publish('votes', function (pollId) {
+	return Votes.find({pollId : pollId});
 });
