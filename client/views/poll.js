@@ -9,11 +9,10 @@ Template.pollDetails.events = {
 	'click [data-action="vote-on-poll"]': function(event){
 		event.preventDefault();
 		var poll = Template.currentData();
-		//console.log("poll is:", poll);
 		var pollOption = this;
 		var pollTemplate = Template.instance();
 		var pollId = poll && poll._id;
-		//console.log(pollTemplate);
+
 		var timestamp = moment().valueOf();
 		var option = pollOption.valueOf();
 		Meteor.call('insertVote', Meteor.userId(), pollId, timestamp, option, function(err, res) {
@@ -67,15 +66,12 @@ Template.pollListItem.helpers({
 	'numOfVotes': function(){
 		var pollTemplate = Template.instance();
 		var pollId = pollTemplate.data._id;
-		//console.log(pollId);
 		return Votes.find({pollId : pollId}).count();
 	},
 	'hoursAgo': function(){
 		var pollTemplate = Template.instance();
 		var expiration = pollTemplate.data.expiration;
-		//console.log(moment().valueOf());
 
-		//console.log(moment(expiration).endOf('day').humanize());
 		
 		if(moment().valueOf() > expiration) {
 			return moment(expiration).fromNow();
